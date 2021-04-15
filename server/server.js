@@ -5,7 +5,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 const PORT = process.env.APP_PORT;
-
+const CORS_PORT = process.env.CORS_PORT || 3000;
 const app = express();
 
 app.use(express.json());
@@ -16,7 +16,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: `http://localhost:${CORS_PORT}`,
     credentials: true,
   })
 );
