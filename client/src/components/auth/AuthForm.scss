@@ -1,0 +1,18 @@
+@import "../../style/mixins.scss";
+
+.auth-form {
+  @include card();
+
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+  }
+
+  .btn-register,
+  .btn-login {
+    @include btn();
+    margin: 1rem auto;
+    background: var(--btn-submit);
+    color: var(--light-color);
+  }
+}

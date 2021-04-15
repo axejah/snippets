@@ -1,0 +1,19 @@
+@import "../style/mixins.scss";
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  align-items: center;
+  color: var(--light-color);
+
+  .btn-logout {
+    @include link();
+  }
+
+  a,
+  .btn-logout {
+    color: unset;
+    margin-right: 1rem;
+  }
+}

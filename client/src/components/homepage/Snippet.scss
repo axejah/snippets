@@ -1,0 +1,37 @@
+@import "../../style/mixins.scss";
+
+.snippet {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 7.5px;
+  background: var(--light-color);
+  box-shadow: var(--box-shadow);
+
+  h2,
+  p,
+  pre {
+    margin-bottom: 1rem;
+  }
+
+  pre {
+    font-family: monospace;
+    font-size: 1.3rem;
+    background: var(--dark-color);
+    padding: 0.7rem;
+    border-radius: 5px;
+  }
+
+  .btn-delete,
+  .btn-edit {
+    @include btn();
+    margin-right: 1rem;
+    color: var(--light-color);
+  }
+
+  .btn-edit {
+    background: var(--btn-edit-color);
+  }
+  .btn-delete {
+    background: var(--btn-delete-color);
+  }
+}
