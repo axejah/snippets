@@ -1,0 +1,25 @@
+@import "../../style/mixins.scss";
+
+.snippet-editor {
+  @include card();
+
+  .btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.5rem 0;
+    button {
+      @include btn();
+      width: 50%;
+      color: var(--light-color);
+    }
+    .btn-submit {
+      background: var(--btn-submit);
+      width: 40%;
+    }
+    .btn-edit {
+      background: var(--text-dark-color);
+      width: 40%;
+    }
+  }
+}

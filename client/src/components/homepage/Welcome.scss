@@ -1,0 +1,35 @@
+@import "../../style/mixins.scss";
+@import "../../style/variables.scss";
+
+.welcome-container {
+  @include card();
+  height: 400px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    font-size: 1.5rem;
+  }
+  span {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  img {
+    width: 75%;
+  }
+
+  p {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    a {
+      font-weight: 500;
+      color: navy;
+    }
+  }
+}
