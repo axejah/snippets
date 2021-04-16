@@ -5,6 +5,7 @@ import UserContext from "../../components/context/UserContext";
 import "./AuthForm.scss";
 
 function Login() {
+  const domain = process.env.REACT_APP_BACKEND_DOMAIN;
   const [formEmail, setFormEmail] = useState("");
   const [formPassword, setFormPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
@@ -22,7 +23,7 @@ function Login() {
     };
 
     try {
-      await axios.post("http://localhost:5005/auth/login/", loginData);
+      await axios.post(`${domain}/auth/login/`, loginData);
       await getUser();
 
       history.push("/");

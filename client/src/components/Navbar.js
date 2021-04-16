@@ -6,10 +6,11 @@ import UserContext from "../components/context/UserContext";
 import "./Navbar.scss";
 
 function Navbar() {
+  const domain = process.env.REACT_APP_BACKEND_DOMAIN;
   const { user, getUser } = useContext(UserContext);
 
   async function logOut() {
-    await axios.get("http://localhost:5005/auth/logOut");
+    await axios.get(`${domain}/auth/logOut`);
 
     getUser();
   }

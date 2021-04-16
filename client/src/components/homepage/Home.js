@@ -9,6 +9,7 @@ import "./Home.scss";
 import UserContext from "../context/UserContext";
 
 function Home() {
+  const domain = process.env.REACT_APP_BACKEND_DOMAIN;
   const [snippets, setSnippets] = useState([]);
   const [editorOpen, setEditorOpen] = useState(false);
   const [editSnippetData, setEditSnippetData] = useState(null);
@@ -18,14 +19,14 @@ function Home() {
   useEffect(() => {
     if (!user) {
       setSnippets([]);
-      return;
+    } else {
+      getSnippets();
     }
-
-    getSnippets();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   async function getSnippets() {
-    const snippetsRes = await axios.get("http://localhost:5005/snippets/");
+    const snippetsRes = await axios.get(`${domain}/snippets/`);
     setSnippets(snippetsRes.data.snippets);
   }
 
