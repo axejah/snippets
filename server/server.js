@@ -25,8 +25,8 @@ app.use(cookieParser());
 // routes
 const authRoute = require("./routes/users");
 const snippets = require("./routes/snippets");
-app.use("/snippets", snippets);
-app.use("/auth", authRoute);
+app.use("/api", snippets);
+app.use("/api", authRoute);
 
 mongoose.connect(
   process.env.MONGO_DB,

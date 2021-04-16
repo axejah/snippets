@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Snippet = require("../models/snippetModel");
 const auth = require("../middleware/auth");
 
-router.get("/", auth, async (req, res) => {
+router.get("/snippets", auth, async (req, res) => {
   try {
     const snippets = await Snippet.find({ user: req.user });
     return res.status(200).json({
@@ -19,7 +19,7 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-router.post("/", auth, async (req, res) => {
+router.post("/snippets", auth, async (req, res) => {
   try {
     const { title, description, code } = req.body;
 
@@ -53,7 +53,7 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-router.put("/:id", auth, async (req, res) => {
+router.put("/snippets/:id", auth, async (req, res) => {
   try {
     const snippetId = req.params.id;
     const { title, code, description } = req.body;
@@ -103,7 +103,7 @@ router.put("/:id", auth, async (req, res) => {
   }
 });
 
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/snippets/:id", auth, async (req, res) => {
   try {
     const snippetId = req.params.id;
 

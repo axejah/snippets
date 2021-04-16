@@ -3,7 +3,7 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-router.post("/", async (req, res) => {
+router.post("/auth", async (req, res) => {
   try {
     const { email, password, passwordVerify } = req.body;
 
@@ -64,7 +64,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
+router.post("/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -110,7 +110,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/loggedIn", (req, res) => {
+router.get("/auth/loggedIn", (req, res) => {
   try {
     const token = req.cookies.token;
 
@@ -122,7 +122,7 @@ router.get("/loggedIn", (req, res) => {
   }
 });
 
-router.get("/logOut", (req, res) => {
+router.get("/auth/logOut", (req, res) => {
   try {
     return res.clearCookie("token").json({ message: "logged out" });
   } catch (error) {
