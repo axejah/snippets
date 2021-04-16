@@ -5,7 +5,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 const PORT = process.env.APP_PORT;
-const CORS_PORT = process.env.CORS_PORT || 3000;
+const CORS_DOMAIN = process.env.CORS_DOMAIN || `http://localhost:${PORT}`;
 const app = express();
 
 app.use(express.json());
@@ -16,7 +16,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: `http://localhost:${CORS_PORT}`,
+    origin: `${CORS_DOMAIN}`,
     credentials: true,
   })
 );
@@ -41,5 +41,5 @@ mongoose.connect(
 );
 
 app.listen(PORT, () => {
-  console.log(`server is running on ${PORT}`);
+  console.log(`server is running on ${PORT}, CORS DOMAIN: ${CORS_DOMAIN}`);
 });
