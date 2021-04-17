@@ -5,7 +5,6 @@ import UserContext from "../../components/context/UserContext";
 import "./AuthForm.scss";
 
 function Register() {
-  const domain = process.env.REACT_APP_BACKEND_DOMAIN;
   const [formEmail, setFormEmail] = useState("");
   const [formPassword, setFormPassword] = useState("");
   const [formPasswordVerify, setFormPasswordVerify] = useState("");
@@ -24,7 +23,7 @@ function Register() {
     };
 
     try {
-      await axios.post(`${domain}/auth/`, regData);
+      await axios.post("/api/auth/", regData);
       await getUser();
       history.push("/");
     } catch (error) {

@@ -1,11 +1,10 @@
 require("dotenv").config();
+const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 const PORT = process.env.APP_PORT;
-const CORS_DOMAIN = process.env.CORS_DOMAIN || `http://localhost:${PORT}`;
 const app = express();
 
 app.use(express.json());
@@ -14,19 +13,19 @@ app.use(
     extended: true,
   })
 );
-app.use(
-  cors({
-    origin: `${CORS_DOMAIN}`,
-    credentials: true,
-  })
-);
 app.use(cookieParser());
+app.use(express.static(path.resolve(__dirname, "../client/build")));
 
-// routes
+// api routes
 const authRoute = require("./routes/users");
 const snippets = require("./routes/snippets");
 app.use("/api", snippets);
 app.use("/api", authRoute);
+
+// serve static files
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+});
 
 mongoose.connect(
   process.env.MONGO_DB,
@@ -41,5 +40,5 @@ mongoose.connect(
 );
 
 app.listen(PORT, () => {
-  console.log(`server is running on ${PORT}, CORS DOMAIN: ${CORS_DOMAIN}`);
+  console.log(`server is running on ${PORT}`);
 });

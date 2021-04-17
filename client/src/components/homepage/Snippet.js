@@ -3,11 +3,9 @@ import axios from "axios";
 import "./Snippet.scss";
 
 function Snippet({ snippet, getSnippets, editSnippet }) {
-  const domain = process.env.REACT_APP_BACKEND_DOMAIN;
-
   async function deleteSnippet() {
     if (window.confirm("Do you want to remove this snippet?")) {
-      await axios.delete(`${domain}/snippets/${snippet._id}`);
+      await axios.delete(`/api/snippets/${snippet._id}`);
 
       getSnippets();
     }

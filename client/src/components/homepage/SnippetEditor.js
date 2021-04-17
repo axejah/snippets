@@ -4,7 +4,6 @@ import axios from "axios";
 import "./SnippetEditor.scss";
 
 function SnippetEditor(props) {
-  const domain = process.env.REACT_APP_BACKEND_DOMAIN;
   const [editorTitle, setEditorTitle] = useState("");
   const [editorDescription, setEditorDescription] = useState("");
   const [editorCode, setEditorCode] = useState("");
@@ -41,11 +40,10 @@ function SnippetEditor(props) {
       code: editorCode ? editorCode : "",
     };
 
-    if (!props.editSnippetData)
-      await axios.post(`${domain}/snippets/`, snippetData);
+    if (!props.editSnippetData) await axios.post("api/snippets/", snippetData);
     else
       await axios.put(
-        `${domain}/snippets/${props.editSnippetData._id}`,
+        `/api/snippets/${props.editSnippetData._id}`,
         snippetData
       );
 
